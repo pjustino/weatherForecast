@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  weather.web:
+    image: ${DOCKER_REGISTRY-}weatherweb
+    build:
+      context: .
+      dockerfile: weather.web/Dockerfile
+    depends_on:
+        - sqlserver
+   
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    ports:
+       - "1433:1433"
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "dotnet@justin01"
+ 
