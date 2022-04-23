@@ -3,6 +3,9 @@ using Domain.Models;
 using weather.services;
 using weather.web.models;
 using weather.domain.Exceptions;
+using System.Linq;
+using weather.services.mappers;
+using Domain.Converters;
 
 namespace WeatherForecast.Controllers
 {
@@ -17,34 +20,70 @@ namespace WeatherForecast.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IWeatherForecastService _weatherForecastService;
+        private readonly ITemperatureForecastMapper _temperatureForecastMapper;
+        private readonly ITemperatureConverter _temperatureConverter1;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecastService weatherForecastService)
+        public WeatherForecastController(
+            ILogger<WeatherForecastController> logger,
+            IWeatherForecastService weatherForecastService,
+            ITemperatureForecastMapper temperatureForecastMapper,
+            ITemperatureConverter temperatureConverter
+            )
         {
             _logger = logger;
+            _temperatureForecastMapper = temperatureForecastMapper;
+            _temperatureConverter1 = temperatureConverter;
             _weatherForecastService = weatherForecastService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<int> Get()
+        [HttpGet]
+        public IActionResult Get()
         {
-            return Enumerable.Range(1, 5).ToArray();
+            var weeklyForecast = _weatherForecastService.GetWeekForecast();
+
+            var feelLikeReport = weeklyForecast.Select(wf =>
+            {
+                return new FeelLikeForecastByDay
+                {
+                    TemperatureFeel = _temperatureForecastMapper.MapCelsiusToFeelFormat(wf.Temperature),
+                    Date = wf.Date.ToDateTime(new TimeOnly(0, 0))
+                };
+            });
+
+            return Ok(new ForecastReportResult {
+                ForecastByDay = feelLikeReport.ToList(),
+                Success = true
+            });
         }
 
         [HttpPost]
-        public IActionResult Post(ForecastInput forecastInput)
+        public IActionResult Post([FromBody] ForecastInput forecastInput)
         {
             var temperatureConverter = new TemperatureConverter();
 
             var newForecast = new ForecastByDay
             {
-                Date = DateOnly.FromDateTime(forecastInput.Date),
-                Temperature = temperatureConverter.ToCelsius(forecastInput.Temperature, forecastInput.unit),
+                Date = DateOnly.FromDateTime(forecastInput.Date.GetValueOrDefault()),
+                Temperature = temperatureConverter.ToCelsius(forecastInput.Temperature.GetValueOrDefault(), forecastInput.unit),
                 Unit = TemperatureUnit.CELSIUS
             };
 
-                _weatherForecastService.AddForecast(newForecast);
+            try
+            {
+                _weatherForecastService.AddForecastByDay(newForecast);
+            }
+            catch (ForecastInputException ex)
+            {
+                _logger.LogError("Invalid input forecast data.", ex);
 
-            return Ok(new ForecastInputResult
+                return BadRequest( new ForecastBaseResult
+                {
+                    Success = false,
+                    ErrorMessage = ex.Message
+                });
+            }
+
+            return Ok(new ForecastBaseResult
             {
                 Success = true
             });

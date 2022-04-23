@@ -6,11 +6,12 @@ namespace weather.web.models
     public class ForecastInput
     {
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Required]
-        public float Temperature { get; set; }
+        public float? Temperature { get; set; }
 
+        [Required]
         public TemperatureUnit unit { get; set; }
     }
 }

@@ -10,13 +10,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB12EC49-3473-4556-999A-C7A04601EE19}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6D37653E-21C6-4C15-BC24-30CE23754C3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "weather.services", "weather.services\weather.services.csproj", "{69235C14-B3F7-474A-B922-EE9C5178AE37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "weather.services", "weather.services\weather.services.csproj", "{69235C14-B3F7-474A-B922-EE9C5178AE37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "weather.servicesTests", "weather.servicesTests\weather.servicesTests.csproj", "{D69205DE-1707-4278-8086-BC3817F0399D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "weather.servicesTests", "weather.servicesTests\weather.servicesTests.csproj", "{D69205DE-1707-4278-8086-BC3817F0399D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

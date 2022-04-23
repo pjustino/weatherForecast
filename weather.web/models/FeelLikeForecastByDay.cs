@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class FeelLikeDayForecast
+    public class FeelLikeForecastByDay
     {
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public string TemperatureFeel { get; set; } = String.Empty;
     }
 }

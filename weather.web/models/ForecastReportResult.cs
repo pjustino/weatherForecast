@@ -2,8 +2,8 @@
 
 namespace weather.web.models
 {
-    public class ForecastReportResult : ForecastInputResult
+    public class ForecastReportResult : ForecastBaseResult
     {
-        public IEnumerable<ForecastByDay> ForecastByDay { get; set; } = Enumerable.Empty<ForecastByDay>();
+        public IEnumerable<FeelLikeForecastByDay> ForecastByDay { get; set; } = Enumerable.Empty<FeelLikeForecastByDay>();
     }
 }

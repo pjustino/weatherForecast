@@ -1,19 +1,19 @@
 ﻿using Domain.Models;
 using weather.domain.Exceptions;
-using weather.services.Checkers;
+using weather.services.Validators;
 
 namespace weather.services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
-        public WeatherForecastService(ITemperatureChecker temperatureChecker)
+        public WeatherForecastService(ITemperatureValidator temperatureChecker)
         {
             _temperatureChecker = temperatureChecker;
         }
 
-        private ITemperatureChecker _temperatureChecker;
+        private ITemperatureValidator _temperatureChecker;
 
-        public void AddForecast(ForecastByDay dayForecast)
+        public void AddForecastByDay(ForecastByDay dayForecast)
         {
 
             if (!_temperatureChecker.IsTemperatureInRange(dayForecast))
@@ -29,16 +29,23 @@ namespace weather.services
 
         }
 
-        public FeelLikeDayForecast GetWeeklyForecast(int startDayInput)
+        public IEnumerable<ForecastByDay> GetWeekForecast()
         {
-            var startDay = DateOnly.FromDayNumber(startDayInput);
 
             // TODO: Call Repository
 
-            return new FeelLikeDayForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now),
-                TemperatureFeel = "warm"
+            return new List<ForecastByDay> { 
+                new ForecastByDay
+                {
+                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    Temperature = -2.5f
+                },
+                new ForecastByDay
+                {
+                    Date = DateOnly.FromDateTime(DateTime.Now).AddDays(1),
+                    Temperature = 40
+                }
+
             };
         }
     }

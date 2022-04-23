@@ -1,15 +1,19 @@
 using System.Text.Json.Serialization;
 using weather.services;
-using weather.services.Checkers;
+using weather.services.Validators;
+using weather.services.mappers;
 using WeatherForecast;
+using Domain.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 // Add my dependencies
-builder.Services.AddTransient<ITemperatureChecker, TemperatureChecker>();
+builder.Services.AddTransient<ITemperatureValidator, TemperatureValidator>();
 builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
+builder.Services.AddSingleton<ITemperatureForecastMapper, TemperatureForecastMapper>();
+builder.Services.AddSingleton<ITemperatureConverter, TemperatureConverter>();
 
 builder.Services.AddControllers().AddJsonOptions(
     o => {
