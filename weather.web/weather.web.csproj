@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\weather.domain\weather.domain.csproj" />
+    <ProjectReference Include="..\weather.repository\weather.repository.csproj" />
     <ProjectReference Include="..\weather.services\weather.services.csproj" />
   </ItemGroup>
 

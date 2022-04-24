@@ -1,52 +1,43 @@
 ﻿using Domain.Models;
 using weather.domain.Exceptions;
+using weather.repository.Repository;
 using weather.services.Validators;
 
 namespace weather.services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
-        public WeatherForecastService(ITemperatureValidator temperatureChecker)
+        public WeatherForecastService(ITemperatureValidator temperatureChecker, IWeatherForecastRepository weatherForecastRepository)
         {
             _temperatureChecker = temperatureChecker;
+            _weatherForecastRepository = weatherForecastRepository;
         }
 
         private ITemperatureValidator _temperatureChecker;
+        private IWeatherForecastRepository _weatherForecastRepository;
 
-        public void AddForecastByDay(ForecastByDay dayForecast)
+        public void AddForecastByDay(WeatherForecastCelcius dayForecast)
         {
 
             if (!_temperatureChecker.IsTemperatureInRange(dayForecast))
             {
-                throw new ForecastInputException(message: $"Temperature not in range ({dayForecast.Temperature} {dayForecast.Unit}).");
+                throw new ForecastInputException(message: $"Temperature not in range ({dayForecast.Temperature}).");
             }
 
             if (dayForecast.Date.CompareTo(DateOnly.FromDateTime(DateTime.Now)) < 0) {
-                throw new ForecastInputException(message: $"cannot set forecast in the past! Forecast date: {dayForecast.Date} .");
+                throw new ForecastInputException(message: $"cannot set forecast in the past! Forecast date ({dayForecast.Date}).");
             };
 
-            // TODO: Add call to repository
+            _weatherForecastRepository.AddForecastByDay(dayForecast);
 
         }
 
-        public IEnumerable<ForecastByDay> GetWeekForecast()
+        public IEnumerable<WeatherForecastCelcius> GetWeekForecast()
         {
 
             // TODO: Call Repository
 
-            return new List<ForecastByDay> { 
-                new ForecastByDay
-                {
-                    Date = DateOnly.FromDateTime(DateTime.Now),
-                    Temperature = -2.5f
-                },
-                new ForecastByDay
-                {
-                    Date = DateOnly.FromDateTime(DateTime.Now).AddDays(1),
-                    Temperature = 40
-                }
-
-            };
+            return _weatherForecastRepository.GetWeekForecast();
         }
     }
 }

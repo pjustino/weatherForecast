@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using weather.services.Validators;
+using Domain.Converters;
+using weather.repository.Repository;
+using Moq;
 
 namespace weather.services.Tests
 {
@@ -12,14 +16,15 @@ namespace weather.services.Tests
     public class WeatherForecastServiceTests
     {
         [TestMethod()]
-        public void WeatherForecastServiceTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
         public void AddForecastTest()
         {
+            // Arrange
+            var repository = new Mock<IWeatherForecastRepository>();
+            var weatherService = new WeatherForecastService(new TemperatureValidator( new TemperatureConverter()), repository.Object);
+
+            // Act
+
+            //Assert
             Assert.Fail();
         }
 

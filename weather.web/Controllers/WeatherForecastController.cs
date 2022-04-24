@@ -46,7 +46,7 @@ namespace WeatherForecast.Controllers
                 return new FeelLikeForecastByDay
                 {
                     TemperatureFeel = _temperatureForecastMapper.MapCelsiusToFeelFormat(wf.Temperature),
-                    Date = wf.Date.ToDateTime(new TimeOnly(0, 0))
+                    Date = wf.Date
                 };
             });
 
@@ -61,11 +61,10 @@ namespace WeatherForecast.Controllers
         {
             var temperatureConverter = new TemperatureConverter();
 
-            var newForecast = new ForecastByDay
+            var newForecast = new WeatherForecastCelcius
             {
-                Date = DateOnly.FromDateTime(forecastInput.Date.GetValueOrDefault()),
+                Date = forecastInput.Date.GetValueOrDefault(),
                 Temperature = temperatureConverter.ToCelsius(forecastInput.Temperature.GetValueOrDefault(), forecastInput.unit),
-                Unit = TemperatureUnit.CELSIUS
             };
 
             try

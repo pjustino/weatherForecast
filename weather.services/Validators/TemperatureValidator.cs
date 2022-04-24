@@ -10,12 +10,11 @@ namespace weather.services.Validators
         {
             _temperatureConverter1 = temperatureConverter;
         }
-        public bool IsTemperatureInRange(ForecastByDay dayForecast)
+        public bool IsTemperatureInRange(WeatherForecastCelcius dayForecast)
         {
-            var temperature = _temperatureConverter1.ToCelsius(dayForecast.Temperature, dayForecast.Unit);
 
-            return temperature >= ((float)TemperatureRangeCelsius.MIN)
-                && temperature <= ((float)TemperatureRangeCelsius.MAX);
+            return dayForecast.Temperature >= ((float)TemperatureRangeCelsius.MIN)
+                && dayForecast.Temperature <= ((float)TemperatureRangeCelsius.MAX);
         }
     }
 }

@@ -4,16 +4,28 @@ using weather.services.Validators;
 using weather.services.mappers;
 using WeatherForecast;
 using Domain.Converters;
+using weather.repository;
+using Microsoft.EntityFrameworkCore;
+using weather.repository.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Add database context
+builder.Services.AddDbContext<DataContext>(options => {
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        x => x.MigrationsAssembly("weather.repository")
+        );
+    });
 
 // Add my dependencies
 builder.Services.AddTransient<ITemperatureValidator, TemperatureValidator>();
 builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
 builder.Services.AddSingleton<ITemperatureForecastMapper, TemperatureForecastMapper>();
 builder.Services.AddSingleton<ITemperatureConverter, TemperatureConverter>();
+builder.Services.AddTransient<IWeatherForecastRepository, WeatherForecastRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(
     o => {
