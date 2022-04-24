@@ -64,7 +64,7 @@ Conversion between temperature numeral value range (Celsius) and feel like text 
           "date": "04/25/2022",
           "temperatureFeel": "Cool"
         },
-        {webbased widget
+        {
           "date": "04/26/2022",
           "temperatureFeel": "Cool"
         },
