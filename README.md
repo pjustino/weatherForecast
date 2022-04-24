@@ -1,11 +1,8 @@
 # Weather Forecast Report API
 
-This API allows a weatherman to store weather forecasts (temperature) per day that any user can retrieve in a week (7 days) forecast report in a "feel like" format (e.g.:  "Freezing", 
-"Bracing", "Chilly", "Cool", "Mild", 
-"Warm", "Balmy", "Hot", "Sweltering", 
-"Scorching").
+This API allows a weatherman to store weather forecasts (temperature) per day. An frontend application can retrieve a week (7 days) forecast showing temperatures in a "feel like" format (e.g.: "Chilly" or "Cool").
 
-Conversion between temperature numeral value range (Celsius) and feel like text form follows the table below.
+Conversion between temperature numeric value submited by weatherman and the returned value on a "feel like" textual format follows the rules in the table below.
 
 | Temperature interval (Celsius) | Feels Like |
 |:------------------------------:|:----------:|
@@ -25,7 +22,7 @@ Conversion between temperature numeral value range (Celsius) and feel like text 
 
 ## Assumptions
 
-1. Weather report will return on GET the temperature feel (human readable) for a 7 day's week starting from current day (not including).
+1. Weather forecast returned to the user will a list of temperatures (in an human feels like text form) for a 7 day's week, starting from current day (not including).
 2. If a forecast is submited for a day already in the database it will update the existing forecast.
 3. Inputs can be done in Celsius or Fahrenheit units but values stored in database are always in Celsius.
  
@@ -37,7 +34,7 @@ Conversion between temperature numeral value range (Celsius) and feel like text 
 3. Temperature min value is -60 (Celsius)
 4. Request POST payload for daily forecast submission will be a JSON with properties:
     * date (forecast date in format yyyy-mm-dd)
-    * temperature (temperature value)
+    * temperature (temperature value e.g.: 20.5 )
     * unit (can be 'CELSIUS' or 'FAHRENHEIT')
     ```json
     {
@@ -46,7 +43,8 @@ Conversion between temperature numeral value range (Celsius) and feel like text 
         "unit": "FAHRENHEIT"
     }
     ```
-5. Response is also a JSON with a success boolean an error message
+    
+5. Response is a JSON with a success flag an error message (not emtpy in case of error)
     ```json
     {
         "success": true,
@@ -57,6 +55,7 @@ Conversion between temperature numeral value range (Celsius) and feel like text 
 ## Weather week forecast (GET /weatherForecast)
 
 1. Response will be a JSON to be consumed by an webbased widget (e.g. React.js). Forecast items will have the forecast date and the temperature for that day in a "feel like" non-numeric format: 
+    
     ```json
     {
       "forecastByDay": [
