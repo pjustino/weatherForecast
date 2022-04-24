@@ -23,18 +23,76 @@ Conversion between temperature numeral value range (Celsius) and feel like text 
 > :warning: Reported values bellow -60 or above 60 are not allowed
 
 
-## Forecast input data rules
-
-1. Reported data cannot be in the past
-2. Temperature max value is 60 (Celsius)
-3. Temperature min value is -60 (Celsius)
-
 ## Assumptions
 
 1. Weather report will return on GET the temperature feel (human readable) for a 7 day's week starting from current day (not including).
 2. If a forecast is submited for a day already in the database it will update the existing forecast.
 3. Inputs can be done in Celsius or Fahrenheit units but values stored in database are always in Celsius.
-    
+ 
+## API endpoint details 
+### Forecast sumbission details (POST /weatherForecast)
+
+1. Reported data cannot be in the past
+2. Temperature max value is 60 (Celsius)
+3. Temperature min value is -60 (Celsius)
+4. Request POST payload for daily forecast submission will be a JSON with properties:
+    * date (forecast date in format yyyy-mm-dd)
+    * temperature (temperature value)
+    * unit (can be 'CELSIUS' or 'FAHRENHEIT')
+    ```json
+    {
+        "date": "2022-04-29",
+        "temperature": 104,
+        "unit": "FAHRENHEIT"
+    }
+    ```
+5. Response is also a JSON with a success boolean an error message
+    ```json
+    {
+        "success": true,
+        "errorMessage": ""
+    }
+    ```
+
+## Weather week forecast (GET /weatherForecast)
+
+1. Response will be a JSON to be consumed by an webbased widget (e.g. React.js). Forecast items will have the forecast date and the temperature for that day in a "feel like" non-numeric format: 
+    ```json
+    {
+      "forecastByDay": [
+        {
+          "date": "04/25/2022",
+          "temperatureFeel": "Cool"
+        },
+        {webbased widget
+          "date": "04/26/2022",
+          "temperatureFeel": "Cool"
+        },
+        {
+          "date": "04/27/2022",
+          "temperatureFeel": "Mild"
+        },
+        {
+          "date": "04/28/2022",
+          "temperatureFeel": "Warm"
+        },
+        {
+          "date": "04/29/2022",
+          "temperatureFeel": "Warm"
+        },
+        {
+          "date": "04/30/2022",
+          "temperatureFeel": "Warm"
+        },
+        {
+          "date": "05/01/2022",
+          "temperatureFeel": "Balmy"
+        }
+      ],
+      "success": true,
+      "errorMessage": ""
+    }
+    ```
 
 ## Run the API
 The API was build in .NET 6.0 using Visual Studio. To run with Visual Studio just run the docker-compose start option for project weather.web
