@@ -16,7 +16,7 @@ namespace Weather.Services
         private ITemperatureValidator _temperatureChecker;
         private IWeatherForecastRepository _weatherForecastRepository;
 
-        public void AddForecastByDay(WeatherForecastCelcius dayForecast)
+        public async Task AddForecastByDay(WeatherForecastCelcius dayForecast)
         {
 
             if (!_temperatureChecker.IsTemperatureInRange(dayForecast))
@@ -28,16 +28,13 @@ namespace Weather.Services
                 throw new ForecastInputException(message: $"cannot set forecast in the past! Forecast date ({dayForecast.Date}).");
             };
 
-            _weatherForecastRepository.AddForecastByDay(dayForecast);
+            await _weatherForecastRepository.AddForecastByDay(dayForecast);
 
         }
 
-        public IEnumerable<WeatherForecastCelcius> GetWeekForecast()
+        public async Task<IEnumerable<WeatherForecastCelcius>> GetWeekForecast()
         {
-
-            // TODO: Call Repository
-
-            return _weatherForecastRepository.GetWeekForecast();
+            return await _weatherForecastRepository.GetWeekForecast();
         }
     }
 }

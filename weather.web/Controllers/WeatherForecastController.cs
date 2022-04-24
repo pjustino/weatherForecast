@@ -32,9 +32,9 @@ namespace WeatherForecast.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var weeklyForecast = _weatherForecastService.GetWeekForecast();
+            var weeklyForecast = await _weatherForecastService.GetWeekForecast();
 
             var feelLikeReport = weeklyForecast.Select(wf =>
             {
@@ -52,7 +52,7 @@ namespace WeatherForecast.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ForecastInput forecastInput)
+        public async Task<IActionResult> Post([FromBody] ForecastInput forecastInput)
         {
             var temperatureConverter = new TemperatureConverter();
 
@@ -64,7 +64,7 @@ namespace WeatherForecast.Controllers
 
             try
             {
-                _weatherForecastService.AddForecastByDay(newForecast);
+               await _weatherForecastService.AddForecastByDay(newForecast);
             }
             catch (ForecastInputException ex)
             {

@@ -26,3 +26,4 @@ Note: Reported values bellow -60 or above 60 are not allowed
 ## Assumptions
 
 1. Weather report will return on GET the temperature feel (human readable) for a 7 day's week starting from current day (not including).
+2. If a forecast is subimet for a day already in the database it will update the existing forecast.
