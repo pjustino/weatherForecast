@@ -56,7 +56,7 @@ namespace WeatherForecast.Controllers
         {
             var temperatureConverter = new TemperatureConverter();
 
-            var newForecast = new WeatherForecastCelcius
+            var newForecast = new WeatherForecastCelsius
             {
                 Date = forecastInput.Date.GetValueOrDefault(),
                 Temperature = temperatureConverter.ToCelsius(forecastInput.Temperature.GetValueOrDefault(), forecastInput.unit),

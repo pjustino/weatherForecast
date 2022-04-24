@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    public class WeatherForecastCelcius
+    public class WeatherForecastCelsius
     {
         [Key]
         public int Id { get; set; }

@@ -10,7 +10,7 @@ namespace Weather.Services.Validators
         {
             _temperatureConverter1 = temperatureConverter;
         }
-        public bool IsTemperatureInRange(WeatherForecastCelcius dayForecast)
+        public bool IsTemperatureInRange(WeatherForecastCelsius dayForecast)
         {
 
             return dayForecast.Temperature >= ((float)TemperatureRangeCelsius.MIN)

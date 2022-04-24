@@ -9,7 +9,7 @@ namespace Weather.Repository.Data
 {
     public interface IWeatherForecastRepository
     {
-        Task AddForecastByDay(WeatherForecastCelcius dayForecast);
-        Task<IEnumerable<WeatherForecastCelcius>> GetWeekForecast();
+        Task AddForecastByDay(WeatherForecastCelsius dayForecast);
+        Task<IEnumerable<WeatherForecastCelsius>> GetWeekForecast();
     }
 }

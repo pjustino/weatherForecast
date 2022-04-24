@@ -24,7 +24,7 @@ namespace Weather.Repository
         }
 
         #nullable disable
-        public DbSet<WeatherForecastCelcius> WeatherForecasts { get; set; }
+        public DbSet<WeatherForecastCelsius> WeatherForecasts { get; set; }
         #nullable restore
     }
 }

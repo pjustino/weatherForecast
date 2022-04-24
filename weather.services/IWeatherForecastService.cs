@@ -4,7 +4,7 @@ namespace Weather.Services
 {
     public interface IWeatherForecastService
     {
-        Task AddForecastByDay(WeatherForecastCelcius dayForecast);
-        Task<IEnumerable<WeatherForecastCelcius>> GetWeekForecast();
+        Task AddForecastByDay(WeatherForecastCelsius dayForecast);
+        Task<IEnumerable<WeatherForecastCelsius>> GetWeekForecast();
     }
 }

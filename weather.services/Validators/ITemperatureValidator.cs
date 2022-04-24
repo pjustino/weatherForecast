@@ -9,6 +9,6 @@ namespace Weather.Services.Validators
 {
     public interface ITemperatureValidator
     {
-        bool IsTemperatureInRange(WeatherForecastCelcius dayForecast);
+        bool IsTemperatureInRange(WeatherForecastCelsius dayForecast);
     }
 }

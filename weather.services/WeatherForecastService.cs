@@ -16,7 +16,7 @@ namespace Weather.Services
         private ITemperatureValidator _temperatureChecker;
         private IWeatherForecastRepository _weatherForecastRepository;
 
-        public async Task AddForecastByDay(WeatherForecastCelcius dayForecast)
+        public async Task AddForecastByDay(WeatherForecastCelsius dayForecast)
         {
 
             if (!_temperatureChecker.IsTemperatureInRange(dayForecast))
@@ -32,7 +32,7 @@ namespace Weather.Services
 
         }
 
-        public async Task<IEnumerable<WeatherForecastCelcius>> GetWeekForecast()
+        public async Task<IEnumerable<WeatherForecastCelsius>> GetWeekForecast()
         {
             return await _weatherForecastRepository.GetWeekForecast();
         }

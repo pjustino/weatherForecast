@@ -11,7 +11,7 @@ namespace Weather.Repository.Data
         {
             _db = db;
         }
-        public async Task AddForecastByDay(WeatherForecastCelcius dayForecast)
+        public async Task AddForecastByDay(WeatherForecastCelsius dayForecast)
         {
             using (var dbContextTransaction = _db.Database.BeginTransactionAsync())
             {
@@ -44,14 +44,14 @@ namespace Weather.Repository.Data
             }
         }
 
-        public async Task<IEnumerable<WeatherForecastCelcius>> GetWeekForecast()
+        public async Task<IEnumerable<WeatherForecastCelsius>> GetWeekForecast()
         {
             var startDate = DateTime.Now;
             var endDate = DateTime.Now.AddDays(7);
 
              var result = await _db.WeatherForecasts.Where(forecast => forecast.Date.Date > startDate.Date.Date && forecast.Date.Date <= endDate.Date.Date)
                 .OrderBy( f => f.Date)
-                .Select(forecast => new WeatherForecastCelcius
+                .Select(forecast => new WeatherForecastCelsius
                 {
                     Id = forecast.Id,
                     Date = forecast.Date,
