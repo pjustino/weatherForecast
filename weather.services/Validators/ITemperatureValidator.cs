@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace weather.services.Validators
+namespace Weather.Services.Validators
 {
     public interface ITemperatureValidator
     {

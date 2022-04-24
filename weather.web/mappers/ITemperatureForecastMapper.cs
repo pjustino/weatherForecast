@@ -1,4 +1,4 @@
-﻿namespace weather.services.mappers
+﻿namespace Weather.Web.Mappers
 {
     public interface ITemperatureForecastMapper
     {

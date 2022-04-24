@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace weather.web.models
+namespace Weather.Web.Models
 {
     public class ForecastInput
     {

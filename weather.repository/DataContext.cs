@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace weather.repository
+namespace Weather.Repository
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DataContext>
     {

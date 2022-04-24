@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace weather.repository.Migrations
+namespace Weather.Repository.Migrations
 {
     public partial class InitialSchema : Migration
     {

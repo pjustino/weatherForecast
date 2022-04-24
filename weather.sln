@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "weather.servicesTests", "we
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "weather.repository", "weather.repository\weather.repository.csproj", "{D5CB5D35-9C8B-48EB-8D7F-1CF14A6D0CCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "weather.webTests", "weather.webTests\weather.webTests.csproj", "{1572E964-720C-42A9-B5D0-C120B4DC6887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D5CB5D35-9C8B-48EB-8D7F-1CF14A6D0CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5CB5D35-9C8B-48EB-8D7F-1CF14A6D0CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5CB5D35-9C8B-48EB-8D7F-1CF14A6D0CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1572E964-720C-42A9-B5D0-C120B4DC6887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1572E964-720C-42A9-B5D0-C120B4DC6887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1572E964-720C-42A9-B5D0-C120B4DC6887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1572E964-720C-42A9-B5D0-C120B4DC6887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

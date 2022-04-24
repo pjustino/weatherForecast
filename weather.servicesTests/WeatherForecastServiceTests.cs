@@ -1,16 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using weather.services;
+using Weather.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using weather.services.Validators;
+using Weather.Services.Validators;
 using Domain.Converters;
-using weather.repository.Repository;
+using Weather.Repository.Data;
 using Moq;
 
-namespace weather.services.Tests
+namespace Weather.Services.Tests
 {
     [TestClass()]
     public class WeatherForecastServiceTests

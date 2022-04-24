@@ -1,6 +1,6 @@
-﻿using Domain.Models;
+﻿using Web.Models;
 
-namespace weather.web.models
+namespace Weather.Web.Models
 {
     public class ForecastReportResult : ForecastBaseResult
     {

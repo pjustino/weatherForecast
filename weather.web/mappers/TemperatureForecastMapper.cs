@@ -1,28 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace weather.services.mappers
+﻿namespace Weather.Web.Mappers
 {
     public class TemperatureForecastMapper : ITemperatureForecastMapper
     {
         public string MapCelsiusToFeelFormat(float temperatureValue)
         {
-
-
-            //         "Freezing"
-            //         "Bracing"
-            //         "Chilly"
-            //         "Cool"
-            //         "Mild"
-            //         "Warm"
-            //         "Balmy"
-            //         "Hot"
-            //         "Sweltering",
-            //         "Scorching"
-
             switch (temperatureValue)
             {
                 case <= 0:

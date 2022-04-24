@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace weather.repository.Repository
+namespace Weather.Repository.Data
 {
     public class WeatherForecastRepository : IWeatherForecastRepository
     {
@@ -22,7 +22,8 @@ namespace weather.repository.Repository
             var endDate = DateTime.Now.AddDays(7);
 
            var query =  from forecast in _db.WeatherForecasts
-                  where forecast.Date >= startDate && forecast.Date <= endDate
+                  where forecast.Date >= startDate.Date && forecast.Date <= endDate.Date
+                  orderby forecast.Date
                   select new WeatherForecastCelcius
                   {
                       Id = forecast.Id,

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Weather.Web.Mappers;
 
-namespace weather.services.mappers.Tests
+namespace Weather.Services.mappers.Tests
 {
     [TestClass()]
     public class TemperatureForecastMapperTests

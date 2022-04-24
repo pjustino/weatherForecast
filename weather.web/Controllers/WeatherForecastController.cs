@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Domain.Models;
-using weather.services;
-using weather.web.models;
-using weather.domain.Exceptions;
-using System.Linq;
-using weather.services.mappers;
+using Weather.Services;
+using Weather.Web.Models;
+using Weather.Domain.Exceptions;
 using Domain.Converters;
+using Weather.Web.Mappers;
+using Web.Models;
 
 namespace WeatherForecast.Controllers
 {
@@ -13,11 +13,6 @@ namespace WeatherForecast.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IWeatherForecastService _weatherForecastService;
         private readonly ITemperatureForecastMapper _temperatureForecastMapper;
@@ -46,7 +41,7 @@ namespace WeatherForecast.Controllers
                 return new FeelLikeForecastByDay
                 {
                     TemperatureFeel = _temperatureForecastMapper.MapCelsiusToFeelFormat(wf.Temperature),
-                    Date = wf.Date
+                    Date = wf.Date.ToShortDateString()
                 };
             });
 

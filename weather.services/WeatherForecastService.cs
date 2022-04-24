@@ -1,9 +1,9 @@
 ﻿using Domain.Models;
-using weather.domain.Exceptions;
-using weather.repository.Repository;
-using weather.services.Validators;
+using Weather.Domain.Exceptions;
+using Weather.Repository.Data;
+using Weather.Services.Validators;
 
-namespace weather.services
+namespace Weather.Services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
@@ -24,7 +24,7 @@ namespace weather.services
                 throw new ForecastInputException(message: $"Temperature not in range ({dayForecast.Temperature}).");
             }
 
-            if (dayForecast.Date.CompareTo(DateOnly.FromDateTime(DateTime.Now)) < 0) {
+            if (dayForecast.Date.CompareTo(DateTime.Now.Date) < 0) {
                 throw new ForecastInputException(message: $"cannot set forecast in the past! Forecast date ({dayForecast.Date}).");
             };
 

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using weather.repository;
+using Weather.Repository;
 
 #nullable disable
 
-namespace weather.repository.Migrations
+namespace Weather.Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20220423231749_InitialSchema")]

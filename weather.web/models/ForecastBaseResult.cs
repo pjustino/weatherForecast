@@ -1,4 +1,4 @@
-﻿namespace weather.web.models
+﻿namespace Weather.Web.Models
 {
     public class ForecastBaseResult
     {

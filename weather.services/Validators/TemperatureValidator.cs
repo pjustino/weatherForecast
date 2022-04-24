@@ -1,7 +1,7 @@
 ﻿using Domain.Converters;
 using Domain.Models;
 
-namespace weather.services.Validators
+namespace Weather.Services.Validators
 {
     public class TemperatureValidator : ITemperatureValidator
     {

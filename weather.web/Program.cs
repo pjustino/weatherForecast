@@ -1,12 +1,11 @@
 using System.Text.Json.Serialization;
-using weather.services;
-using weather.services.Validators;
-using weather.services.mappers;
-using WeatherForecast;
+using Weather.Services;
+using Weather.Services.Validators;
 using Domain.Converters;
-using weather.repository;
+using Weather.Repository;
 using Microsoft.EntityFrameworkCore;
-using weather.repository.Repository;
+using Weather.Repository.Data;
+using Weather.Web.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +30,7 @@ builder.Services.AddControllers().AddJsonOptions(
     o => {
         o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -52,6 +52,16 @@ else
 {
     app.UseExceptionHandler("/error");
 }
+
+// Run Database Migrations
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<DataContext>();
+    context.Database.Migrate();
+}
+
 
 app.UseAuthorization();
 

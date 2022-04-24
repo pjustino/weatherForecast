@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace weather.repository.Repository
+namespace Weather.Repository.Data
 {
     public interface IWeatherForecastRepository
     {
